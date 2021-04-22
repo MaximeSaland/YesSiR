@@ -2,20 +2,29 @@
 % Please edit documentation in R/sensoTable.R
 \name{exportxlsx}
 \alias{exportxlsx}
-\title{Title}
+\title{Export a flextable into a .xlsx file}
 \usage{
 exportxlsx(table, filename, path)
 }
 \arguments{
-\item{table}{flextable}
+\item{table}{A flextable}
 
-\item{filename}{String}
+\item{filename}{Name of the .xlsx file}
 
-\item{path}{String}
+\item{path}{Path to the directory stocking the .xlsx file}
 }
 \value{
 Returns an .xlsx file based on a flextable
 }
 \description{
-Title
+Export a flextable into a .xlsx file
+}
+\examples{
+ft <- flextable::flextable(head(mtcars))
+# color some cells in blue
+ft <- flextable::bg(ft, i=ft$body$dataset$disp>200, j=3, bg = "#7ed6df", part = "body")
+# color a few cells in yellow
+ft <- flextable::bg(ft, i=ft$body$dataset$vs==0, j=8, bg = "#FCEC20", part = "body")
+# export your flextable as a .xlsx in the current working directory
+exportxlsx(ft, filename ="myFlextable", path=getwd())
 }

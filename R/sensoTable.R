@@ -2,25 +2,38 @@ library(SensoMineR)
 library(flextable)
 library(openxlsx)
 
-#' Title
+#' Color the cells of a data frame according to 2 threshold levels
 #'
-#' @param res.decat Result of a SensoMineR::decat
-#' @param level.upper numeric
-#' @param level.upper2 numeric
-#' @param col.lower string
-#' @param col.lower2 string
-#' @param col.upper string
-#' @param col.upper2 string
+#' @param res.decat result of a SensoMineR::decat
+#' @param thres the threshold under which cells are colored col.neg (or col.pos) if the tested coefficient is significantly lower (or higher) than the average
+#' @param thres2 the threshold under which cells are colored col.neg2 (or col.pos2); this threshold should be lower than thres
+#' @param col.neg the color used for thres when the tested coefficient is negative
+#' @param col.neg2 the color used for thres2 when the tested coefficient is negative
+#' @param col.pos the color used for thres when the tested coefficient is positive
+#' @param col.pos2 the color used for thres2 when the tested coefficient is positive
 #' @importFrom FactoMineR PCA
 #' @importFrom flextable flextable bg compose as_paragraph colformat_double align
 #' @return sensoTable() returns a flextable
 #' @export
+#' @description Return a colored flextable based on the result of a SensoMineR::decat according to 2 threshold levels.
+#' @details This function is useful to highlight elements which are significant, especially when there are many values to check
 #'
 #' @examples
-sensoTable = function(res.decat, level.upper=Inf,level.upper2=0.05, col.lower="#ff7979",  col.lower2="#eb4d4b", col.upper="#7ed6df", col.upper2="#22a6b3") {
+#' ### Example 1
+#' data("sensochoc")
+#' # Use the decat function
+#' resdecat <-SensoMineR::decat(sensochoc, formul="~Product+Panelist", firstvar = 5, graph = FALSE)
+#' sensoTable(resdecat)
+#'
+#' ### Example 2
+#' data("sensochoc")
+#' resdecat2 <-SensoMineR::decat(sensochoc, formul="~Product+Panelist", firstvar = 5, graph = FALSE)
+#' sensoTable(resdecat2,thres2=0.01) # Add a second level of significance
 
-  if (level.upper<=level.upper2) {
-    stop("level.upper must be greater than level.upper2")
+sensoTable = function(res.decat, thres=0.05,thres2=0, col.neg="#ff7979",  col.neg2="#eb4d4b", col.pos="#7ed6df", col.pos2="#22a6b3") {
+
+  if (thres<=thres2) {
+    stop("thres must be greater than thres2")
   }
   else {
     prodadjmean = res.decat$adjmean
@@ -47,10 +60,10 @@ sensoTable = function(res.decat, level.upper=Inf,level.upper2=0.05, col.lower="#
           color = "#ffffff"
         }
         else {
-          color = ifelse(abs(probacrit)<level.upper2 && sign(probacrit)<0,col.lower2,
-                  ifelse(abs(probacrit)<level.upper2 && sign(probacrit)>0,col.upper2,
-                  ifelse(abs(probacrit)<level.upper && sign(probacrit)<0,col.lower,
-                  ifelse(abs(probacrit)<level.upper && sign(probacrit)>0,col.upper,"#ffffff"
+          color = ifelse(abs(probacrit)<thres2 && sign(probacrit)<0,col.neg2,
+                  ifelse(abs(probacrit)<thres2 && sign(probacrit)>0,col.pos2,
+                  ifelse(abs(probacrit)<thres && sign(probacrit)<0,col.neg,
+                  ifelse(abs(probacrit)<thres && sign(probacrit)>0,col.pos,"#ffffff"
                   ))))
         }
 
@@ -69,16 +82,24 @@ sensoTable = function(res.decat, level.upper=Inf,level.upper2=0.05, col.lower="#
   }
 }
 
-#' Title
+#' Export a flextable into a .xlsx file
 #'
-#' @param table flextable
-#' @param filename String
-#' @param path String
+#' @param table A flextable
+#' @param filename Name of the .xlsx file
+#' @param path Path to the directory stocking the .xlsx file
 #' @importFrom openxlsx createWorkbook addWorksheet writeData createStyle addStyle saveWorkbook
 #' @return Returns an .xlsx file based on a flextable
 #' @export
 #'
 #' @examples
+#' ft <- flextable::flextable(head(mtcars))
+#' # color some cells in blue
+#' ft <- flextable::bg(ft, i=ft$body$dataset$disp>200, j=3, bg = "#7ed6df", part = "body")
+#' # color a few cells in yellow
+#' ft <- flextable::bg(ft, i=ft$body$dataset$vs==0, j=8, bg = "#FCEC20", part = "body")
+#' # export your flextable as a .xlsx in the current working directory
+#' exportxlsx(ft, filename ="myFlextable", path=getwd())
+
 exportxlsx = function(table, filename, path) {
 
   setwd(path) # Indique le repertoire ou sera enregistrer le fichier excel
@@ -98,7 +119,7 @@ exportxlsx = function(table, filename, path) {
       cell.bgcolor = bgcolor[prod,desc]
 
       # on cree un style pour la cellule
-      cell.style = createStyle(numFmt = "0.000", border = c("top", "bottom", "left", "right"), borderColour = "black", fgFill = cell.bgcolor, halign = "center")
+      cell.style = createStyle(numFmt = "0.000", border = c("top", "bottom", "left", "right"), borderColour = "black", fgFill = ifelse(cell.bgcolor=="transparent","#FFFFFF",cell.bgcolor), halign = "center")
 
       # on applique le style a la cellule
       addStyle(wb,sheet=filename,style = cell.style, rows = prod+1, cols = desc)
@@ -109,12 +130,3 @@ exportxlsx = function(table, filename, path) {
   saveWorkbook(wb,paste0(filename,".xlsx"), overwrite = TRUE)
 
 }
-
-#
-# data(chocolates)
-#
-# res.decat = decat(sensochoc,formul="~Product+Panelist",firstvar=5,lastvar=ncol(sensochoc), graph = TRUE)
-#
-# res = sensoTable(res.decat,0.05,0.01)
-#
-# exportxlsx(res, "testbis","C:/SSD")

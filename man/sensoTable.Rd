@@ -2,36 +2,51 @@
 % Please edit documentation in R/sensoTable.R
 \name{sensoTable}
 \alias{sensoTable}
-\title{Title}
+\title{Color the cells of a data frame according to 2 threshold levels}
 \usage{
 sensoTable(
   res.decat,
-  level.upper = Inf,
-  level.upper2 = 0.05,
-  col.lower = "#ff7979",
-  col.lower2 = "#eb4d4b",
-  col.upper = "#7ed6df",
-  col.upper2 = "#22a6b3"
+  thres = 0.05,
+  thres2 = 0,
+  col.neg = "#ff7979",
+  col.neg2 = "#eb4d4b",
+  col.pos = "#7ed6df",
+  col.pos2 = "#22a6b3"
 )
 }
 \arguments{
-\item{res.decat}{Result of a SensoMineR::decat}
+\item{res.decat}{result of a SensoMineR::decat}
 
-\item{level.upper}{numeric}
+\item{thres}{the threshold under which cells are colored col.neg (or col.pos) if the tested coefficient is significantly lower (or higher) than the average}
 
-\item{level.upper2}{numeric}
+\item{thres2}{the threshold under which cells are colored col.neg2 (or col.pos2); this threshold should be lower than thres}
 
-\item{col.lower}{string}
+\item{col.neg}{the color used for thres when the tested coefficient is negative}
 
-\item{col.lower2}{string}
+\item{col.neg2}{the color used for thres2 when the tested coefficient is negative}
 
-\item{col.upper}{string}
+\item{col.pos}{the color used for thres when the tested coefficient is positive}
 
-\item{col.upper2}{string}
+\item{col.pos2}{the color used for thres2 when the tested coefficient is positive}
 }
 \value{
 sensoTable() returns a flextable
 }
 \description{
-Title
+Return a colored flextable based on the result of a SensoMineR::decat according to 2 threshold levels.
+}
+\details{
+This function is useful to highlight elements which are significant, especially when there are many values to check
+}
+\examples{
+### Example 1
+data("sensochoc")
+# Use the decat function
+resdecat <-SensoMineR::decat(sensochoc, formul="~Product+Panelist", firstvar = 5, graph = FALSE)
+sensoTable(resdecat)
+
+### Example 2
+data("sensochoc")
+resdecat2 <-SensoMineR::decat(sensochoc, formul="~Product+Panelist", firstvar = 5, graph = FALSE)
+sensoTable(resdecat2,thres2=0.01) # Add a second level of significance
 }
