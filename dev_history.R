@@ -17,3 +17,12 @@ data(chocolates)
 usethis::use_data(sensochoc)
 
 usethis::use_r("exportxlsx")
+
+usethis::use_git_ignore(".Rhistory")
+
+# usethis::use_pkgdown()
+#
+# pkgdown::build_site()
+
+data(tea)
+usethis::use_data(tea)

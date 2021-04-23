@@ -2,7 +2,7 @@
 % Please edit documentation in R/yes_MCA.R
 \name{Yes_MCA}
 \alias{Yes_MCA}
-\title{Title}
+\title{PowerPoint reporting of a MCA}
 \usage{
 Yes_MCA(
   res,
@@ -39,5 +39,10 @@ Yes_MCA(
 Returns a .pptx file containing all of the results of a MCA
 }
 \description{
-Title
+PowerPoint reporting of a MCA
+}
+\examples{
+data(tea)
+res.mca <- FactoMineR::MCA(tea[,-19],quali.sup=19:35,graph=FALSE)
+Yes_MCA(res.mca,yes_study_name="MCA + HCPC",yes_temp="C:/SSD/Stage AO/template/YesSir_template.pptx",proba = 0.05,x1=1,x2=2)
 }

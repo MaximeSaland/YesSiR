@@ -1,4 +1,4 @@
-#' Title
+#' PowerPoint reporting of a MCA
 #'
 #' @param res a MCA object
 #' @param yes_study_name the title on the first slide
@@ -14,6 +14,10 @@
 #' @export
 #'
 #' @examples
+#' data(tea)
+#' res.mca <- FactoMineR::MCA(tea[,-19],quali.sup=19:35,graph=FALSE)
+#' Yes_MCA(res.mca,yes_study_name="MCA + HCPC",yes_temp="C:/SSD/Stage AO/template/YesSir_template.pptx",proba = 0.05,x1=1,x2=2)
+
 Yes_MCA <- function(res,yes_study_name,yes_temp,x1=1,x2=2,thres_x1=2,thres_x2=2,proba=0.05,size_tab=10){
 
   #######################################

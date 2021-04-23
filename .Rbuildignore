@@ -1,3 +1,6 @@
 ^yesSIR\.Rproj$
 ^\.Rproj\.user$
 ^dev_history\.R$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
