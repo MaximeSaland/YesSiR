@@ -19,24 +19,24 @@ Yes_MCA(
 \arguments{
 \item{res}{a MCA object}
 
-\item{yes_study_name}{A string of the title on the first slide}
+\item{yes_study_name}{the title on the first slide}
 
-\item{yes_temp}{Path to the template}
+\item{yes_temp}{path to the template}
 
-\item{x1}{numeric}
+\item{x1}{integer specifying the component to plot on the x-axis}
 
-\item{x2}{numeric}
+\item{x2}{integer specifying the component to plot on the y-axis}
 
-\item{thres_x1}{numeric}
+\item{thres_x1}{the threshold for the x-axis over which points are ploted translucent}
 
-\item{thres_x2}{numeric}
+\item{thres_x2}{the threshold for the y-axis over which points are ploted translucent}
 
-\item{proba}{numeric}
+\item{proba}{the significance threshold considered to characterized the category (used for the catdes function)}
 
-\item{size_tab}{numeric}
+\item{size_tab}{the maximum number of rows a table should have on a single slide}
 }
 \value{
-yes_MCA returns a .pptx file containing all of the results of a MCA
+Returns a .pptx file containing all of the results of a MCA
 }
 \description{
 Title

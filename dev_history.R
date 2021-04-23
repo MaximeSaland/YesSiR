@@ -15,3 +15,5 @@ usethis::use_r("yes_MCA")
 library(SensoMineR)
 data(chocolates)
 usethis::use_data(sensochoc)
+
+usethis::use_r("exportxlsx")

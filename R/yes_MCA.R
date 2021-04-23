@@ -1,16 +1,16 @@
 #' Title
 #'
 #' @param res a MCA object
-#' @param yes_study_name A string of the title on the first slide
-#' @param yes_temp Path to the template
-#' @param x1 numeric
-#' @param x2 numeric
-#' @param thres_x1 numeric
-#' @param thres_x2 numeric
-#' @param proba numeric
-#' @param size_tab numeric
+#' @param yes_study_name the title on the first slide
+#' @param yes_temp path to the template
+#' @param x1 integer specifying the component to plot on the x-axis
+#' @param x2 integer specifying the component to plot on the y-axis
+#' @param thres_x1 the threshold for the x-axis over which points are ploted translucent
+#' @param thres_x2 the threshold for the y-axis over which points are ploted translucent
+#' @param proba the significance threshold considered to characterized the category (used for the catdes function)
+#' @param size_tab the maximum number of rows a table should have on a single slide
 #'
-#' @return yes_MCA returns a .pptx file containing all of the results of a MCA
+#' @return Returns a .pptx file containing all of the results of a MCA
 #' @export
 #'
 #' @examples

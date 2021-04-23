@@ -30,10 +30,10 @@ sensoTable(
 \item{col.pos2}{the color used for thres2 when the tested coefficient is positive}
 }
 \value{
-sensoTable() returns a flextable
+Returns a formatted flextable
 }
 \description{
-Return a colored flextable based on the result of a SensoMineR::decat according to 2 threshold levels.
+Colors a flextable based on the result of a SensoMineR::decat according to 2 threshold levels.
 }
 \details{
 This function is useful to highlight elements which are significant, especially when there are many values to check
