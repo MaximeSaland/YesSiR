@@ -26,3 +26,9 @@ usethis::use_git_ignore(".Rhistory")
 
 data(tea)
 usethis::use_data(tea)
+
+usethis::use_r("Yes_decat")
+
+usethis::use_tidy_description()
+attachment::att_amend_desc()
+?devtools::load_all()
