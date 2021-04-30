@@ -55,7 +55,7 @@ Yes_decat <- function(res, yes_study_name, yes_temp, x1=1, x2=2, size_tab=10, co
                             ggplot2::theme_minimal() +
                             ggplot2::scale_color_gradient2(low = col.neg, mid = "grey", high = col.pos, limits=c(min(resT$Vtest),max(resT$Vtest))) +
                             ggplot2::guides(size = FALSE))
-        if (dim(yes_resT)[1]<size_tab){
+        if (dim(yes_resT)[1]<=size_tab){
           ft <- flextable::flextable(yes_resT)
           ft <- flextable::colformat_double(ft,j=-1,digits = 3)
           ft <- flextable::align(ft,align = "center")
@@ -77,7 +77,7 @@ Yes_decat <- function(res, yes_study_name, yes_temp, x1=1, x2=2, size_tab=10, co
             essai <- officer::add_slide(essai, layout = "Deux contenus", master = "YesSiR")
             essai <- officer::ph_with(essai, value = paste("Result of the T-test for",prod), location = officer::ph_location_type(type = "title"))
             essai <- officer::ph_with(essai, value = ft, location = officer::ph_location_label(ph_label = "Content Placeholder 2"))
-            essai <- officer::ph_with(essai, value = yes_wordcloud, location = officer::ph_location_label(ph_label = "Content Placeholder 3"))
+            # essai <- officer::ph_with(essai, value = yes_wordcloud, location = officer::ph_location_label(ph_label = "Content Placeholder 3"))
             yes_slide_num <- yes_slide_num+1
             essai <- officer::ph_with(essai, value = yes_slide_num, location = officer::ph_location_type(type = "sldNum"))
           }
