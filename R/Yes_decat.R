@@ -8,6 +8,7 @@
 #' @param size_tab maximum number of row of a table on a slide
 #' @param col.neg color for negative value
 #' @param col.pos color for positive value
+#' @export
 #'
 #' @examples
 #' \dontrun{

@@ -31,4 +31,5 @@ usethis::use_r("Yes_decat")
 
 usethis::use_tidy_description()
 attachment::att_amend_desc()
-?devtools::load_all()
+
+usethis::use_r("Yes_textual")
