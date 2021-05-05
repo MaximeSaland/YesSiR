@@ -1,8 +1,7 @@
 #' Export a flextable into a .xlsx file
 #'
 #' @param table A flextable
-#' @param filename Name of the .xlsx file
-#' @param path Path to the directory stocking the .xlsx file
+#' @param path Path to the Excel file to be created
 #' @importFrom openxlsx createWorkbook addWorksheet writeData createStyle addStyle saveWorkbook
 #' @return Returns an .xlsx file based on a flextable
 #' @export
@@ -16,15 +15,15 @@
 #' # export your flextable as a .xlsx in the current working directory
 #' exportxlsx(ft, filename ="myFlextable", path=getwd())
 
-exportxlsx = function(table, filename, path) {
+exportxlsx = function(table, path) {
 
-  setwd(path) # Indique le repertoire ou sera enregistrer le fichier excel
+  # setwd(path) # Indique le repertoire ou sera enregistrer le fichier excel
 
   data = table$body$dataset
   bgcolor = as.data.frame(table$body$styles$cells$background.color$data)
 
   wb = createWorkbook()
-  addWorksheet(wb, filename)
+  addWorksheet(wb, "feuille1")
   writeData(wb,1,data)
 
   for (desc in 2:ncol(data)) {
@@ -38,11 +37,11 @@ exportxlsx = function(table, filename, path) {
       cell.style = createStyle(numFmt = "0.000", border = c("top", "bottom", "left", "right"), borderColour = "black", fgFill = ifelse(cell.bgcolor=="transparent","#FFFFFF",cell.bgcolor), halign = "center")
 
       # on applique le style a la cellule
-      addStyle(wb,sheet=filename,style = cell.style, rows = prod+1, cols = desc)
+      addStyle(wb,sheet=1,style = cell.style, rows = prod+1, cols = desc)
 
     }
   }
 
-  saveWorkbook(wb,paste0(filename,".xlsx"), overwrite = TRUE)
+  saveWorkbook(wb,path, overwrite = TRUE)
 
 }

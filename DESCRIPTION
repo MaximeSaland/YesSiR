@@ -22,7 +22,8 @@ Imports:
     officer,
     openxlsx,
     plotrix,
-    SensoMineR
+    SensoMineR,
+    utils
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)

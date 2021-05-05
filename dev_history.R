@@ -33,3 +33,4 @@ usethis::use_tidy_description()
 attachment::att_amend_desc()
 
 usethis::use_r("Yes_textual")
+usethis::use_r("Yes_PCA")

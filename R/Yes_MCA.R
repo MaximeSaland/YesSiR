@@ -1,16 +1,17 @@
 #' PowerPoint reporting of a MCA
 #'
 #' @param res a MCA object
-#' @param yes_study_name the title on the first slide
+#' @param yes_study_name title displayed on the first slide
 #' @param yes_temp path to the template
-#' @param x1 integer specifying the component to plot on the x-axis
-#' @param x2 integer specifying the component to plot on the y-axis
+#' @param path PowerPoint file to be created
+#' @param x1 component to plot on the x-axis
+#' @param x2 component to plot on the y-axis
 #' @param thres_x1 the threshold for the x-axis over which points are ploted translucent
 #' @param thres_x2 the threshold for the y-axis over which points are ploted translucent
-#' @param proba the significance threshold considered to characterized the category (used for the catdes function)
-#' @param size_tab the maximum number of rows a table should have on a single slide
+#' @param proba the significance threshold considered to characterized the category (by default 0.05)
+#' @param size_tab maximum number of rows of a table per slide
 #'
-#' @return Returns a .pptx file containing all of the results of a MCA
+#' @return Returns a .pptx file
 #' @export
 #'
 #' @examples
@@ -20,7 +21,7 @@
 #' Yes_MCA(res.mca,yes_study_name="MCA + HCPC",yes_temp="path/to/the/template/YesSiR_template.pptx")
 #' }
 
-Yes_MCA <- function(res,yes_study_name,yes_temp,x1=1,x2=2,thres_x1=2,thres_x2=2,proba=0.05,size_tab=10){
+Yes_MCA <- function(res,yes_study_name,yes_temp,path,x1=1,x2=2,thres_x1=2,thres_x2=2,proba=0.05,size_tab=10){
 
   #######################################
   #Init: first slide
@@ -635,6 +636,9 @@ Yes_MCA <- function(res,yes_study_name,yes_temp,x1=1,x2=2,thres_x1=2,thres_x2=2,
       }
     }
   }
-  print(essai, target = "results.pptx")
-
+  if (!missing(path)) {
+    print(essai, target = path)
+  } else {
+    print("Path argument is missing")
+  }
 }#End function

@@ -4,14 +4,12 @@
 \alias{exportxlsx}
 \title{Export a flextable into a .xlsx file}
 \usage{
-exportxlsx(table, filename, path)
+exportxlsx(table, path)
 }
 \arguments{
 \item{table}{A flextable}
 
-\item{filename}{Name of the .xlsx file}
-
-\item{path}{Path to the directory stocking the .xlsx file}
+\item{path}{Path to the Excel file to be created}
 }
 \value{
 Returns an .xlsx file based on a flextable

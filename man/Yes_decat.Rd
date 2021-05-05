@@ -8,6 +8,7 @@ Yes_decat(
   res,
   yes_study_name,
   yes_temp,
+  path,
   x1 = 1,
   x2 = 2,
   size_tab = 10,
@@ -18,19 +19,21 @@ Yes_decat(
 \arguments{
 \item{res}{decat result}
 
-\item{yes_study_name}{title on the first slide}
+\item{yes_study_name}{title displayed on the first slide}
 
 \item{yes_temp}{path to the template}
+
+\item{path}{PowerPoint file to be created}
 
 \item{x1}{dimension to plot on the x-axis}
 
 \item{x2}{dimension to plot on the y-axis}
 
-\item{size_tab}{maximum number of row of a table on a slide}
+\item{size_tab}{maximum number of rows of a table per slide}
 
-\item{col.neg}{color for negative value}
+\item{col.neg}{color for negative values (on the wordclouds)}
 
-\item{col.pos}{color for positive value}
+\item{col.pos}{color for positive values (on the wordclouds)}
 }
 \description{
 PowerPoint reporting of a description of categories

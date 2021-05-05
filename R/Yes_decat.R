@@ -1,13 +1,14 @@
 #' PowerPoint reporting of a description of categories
 #'
 #' @param res decat result
-#' @param yes_study_name title on the first slide
+#' @param yes_study_name title displayed on the first slide
 #' @param yes_temp path to the template
+#' @param path PowerPoint file to be created
 #' @param x1 dimension to plot on the x-axis
 #' @param x2 dimension to plot on the y-axis
-#' @param size_tab maximum number of row of a table on a slide
-#' @param col.neg color for negative value
-#' @param col.pos color for positive value
+#' @param size_tab maximum number of rows of a table per slide
+#' @param col.neg color for negative values (on the wordclouds)
+#' @param col.pos color for positive values (on the wordclouds)
 #' @export
 #'
 #' @examples
@@ -17,7 +18,7 @@
 #' Yes_decat(res.decat, yes_study_name="Quantitative description of products",yes_temp="path/to/the/template/YesSiR_template.pptx")
 #' }
 
-Yes_decat <- function(res, yes_study_name, yes_temp, x1=1, x2=2, size_tab=10, col.neg="red", col.pos="blue"){
+Yes_decat <- function(res, yes_study_name, yes_temp, path, x1=1, x2=2, size_tab=10, col.neg="red", col.pos="blue"){
 
   #######################################
   ### Init: first slide ----
@@ -92,6 +93,8 @@ Yes_decat <- function(res, yes_study_name, yes_temp, x1=1, x2=2, size_tab=10, co
             essai <- officer::ph_with(essai, value = yes_wordcloud, location = officer::ph_location_label(ph_label = "Content Placeholder 3"))
             yes_slide_num <- yes_slide_num+1
             essai <- officer::ph_with(essai, value = yes_slide_num, location = officer::ph_location_type(type = "sldNum"))
+          } else {
+            essai <- officer::ph_with(essai, value = yes_wordcloud, location = officer::ph_location_label(ph_label = "Content Placeholder 3"))
           }
         }
       }
@@ -221,8 +224,13 @@ Yes_decat <- function(res, yes_study_name, yes_temp, x1=1, x2=2, size_tab=10, co
     essai <- officer::ph_with(essai, value = yes_spider, location = officer::ph_location_type(type = "body"), use_loc_size=FALSE)
     yes_slide_num <- yes_slide_num+1
     essai <- officer::ph_with(essai, value = yes_slide_num, location = officer::ph_location_type(type = "sldNum"))
+    unlink("spiderplot.png")
   }
   #######################################
+  if (!missing(path)) {
+    print(essai, target = path)
+  } else {
+    print("Path argument is missing")
+  }
 
-  print(essai, target = "results_decat.pptx")
 }
