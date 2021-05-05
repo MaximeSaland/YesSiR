@@ -42,6 +42,6 @@ PowerPoint reporting of a textual analysis
 \dontrun{
 data(beard)
 res.text <- textual(beard,contingence.by = 1,num.text = 3)
-Yes_textual(res = res.text, yes_study_name = "Textual analysis", yes_temp = "path/to/the/template/YesSiR_template.pptx")
+Yes_textual(res = res.text, yes_study_name = "Textual analysis", yes_temp = "path/to/the/template/YesSiR_template.pptx", path = "path/to/the/powerpoint_file.pptx")
 }
 }

@@ -16,7 +16,7 @@
 #' \dontrun{
 #' data(beard)
 #' res.text <- textual(beard,contingence.by = 1,num.text = 3)
-#' Yes_textual(res = res.text, yes_study_name = "Textual analysis", yes_temp = "path/to/the/template/YesSiR_template.pptx")
+#' Yes_textual(res = res.text, yes_study_name = "Textual analysis", yes_temp = "path/to/the/template/YesSiR_template.pptx", path = "path/to/the/powerpoint_file.pptx")
 #' }
 
 Yes_textual <- function(res, yes_study_name = "Result of a textual analysis", yes_temp, path, size_tab=10, proba=0.05,col.neg = "red", col.pos = "blue") {
