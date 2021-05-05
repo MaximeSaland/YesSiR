@@ -41,7 +41,7 @@ PowerPoint reporting of a description of categories
 \examples{
 \dontrun{
 data("sensochoc")
-res.decat <-SensoMineR::decat(sensochoc, formul="~Product+Panelist", firstvar = 5, graph = FALSE)
+res.decat <- SensoMineR::decat(sensochoc, formul="~Product+Panelist", firstvar = 5, graph = FALSE)
 Yes_decat(res.decat, yes_study_name="Quantitative description of products",yes_temp="path/to/the/template/YesSiR_template.pptx", path="path/to/the/powerpoint_file.pptx")
 }
 }

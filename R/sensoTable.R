@@ -1,7 +1,3 @@
-library(SensoMineR)
-library(flextable)
-library(openxlsx)
-
 #' Color the cells of a data frame according to 2 threshold levels
 #'
 #' @param res.decat result of a SensoMineR::decat
@@ -11,8 +7,6 @@ library(openxlsx)
 #' @param col.neg2 the color used for thres2 when the tested coefficient is negative
 #' @param col.pos the color used for thres when the tested coefficient is positive
 #' @param col.pos2 the color used for thres2 when the tested coefficient is positive
-#' @importFrom FactoMineR PCA
-#' @importFrom flextable flextable bg compose as_paragraph colformat_double align
 #' @return Returns a formatted flextable
 #' @export
 #' @description Colors a flextable based on the result of a SensoMineR::decat according to 2 threshold levels.
@@ -74,7 +68,7 @@ sensoTable = function(res.decat, thres=0.05,thres2=0, col.neg="#ff7979",  col.ne
     }
 
     # Mise en forme de la flextable
-    adjmeantable = flextable::compose(adjmeantable,i = 1, j = 1, value = as_paragraph(""), part = "header") # Cache le nom de la premiere colonne
+    adjmeantable = flextable::compose(adjmeantable,i = 1, j = 1, value =  flextable::as_paragraph(""), part = "header") # Cache le nom de la premiere colonne
     adjmeantable = flextable::colformat_double(adjmeantable,j=-1,digits = 3)
     adjmeantable = flextable::align(adjmeantable,align = "center")
 

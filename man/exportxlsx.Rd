@@ -18,11 +18,13 @@ Returns an .xlsx file based on a flextable
 Export a flextable into a .xlsx file
 }
 \examples{
+\dontrun{
 ft <- flextable::flextable(head(mtcars))
 # color some cells in blue
 ft <- flextable::bg(ft, i=ft$body$dataset$disp>200, j=3, bg = "#7ed6df", part = "body")
 # color a few cells in yellow
 ft <- flextable::bg(ft, i=ft$body$dataset$vs==0, j=8, bg = "#FCEC20", part = "body")
 # export your flextable as a .xlsx in the current working directory
-exportxlsx(ft, filename ="myFlextable", path=getwd())
+exportxlsx(ft, filename ="myFlextable", path="path/to/the/excel_file.xlsx")
+}
 }
