@@ -20,10 +20,6 @@ usethis::use_r("exportxlsx")
 
 usethis::use_git_ignore(".Rhistory")
 
-# usethis::use_pkgdown()
-#
-# pkgdown::build_site()
-
 data(tea)
 usethis::use_data(tea)
 
@@ -35,3 +31,5 @@ attachment::att_amend_desc(extra.suggests = "SensoMineR")
 
 usethis::use_r("Yes_textual")
 usethis::use_r("Yes_PCA")
+
+attachment::att_from_rscripts()
