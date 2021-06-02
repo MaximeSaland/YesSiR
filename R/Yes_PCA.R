@@ -3,6 +3,7 @@
 #' @param res a PCA object
 #' @param yes_study_name title displayed on the first slide
 #' @param path PowerPoint file to be created
+#' @param file.name name of the PowerPoint file
 #' @param x1 component to plot on the x-axis
 #' @param x2 component to plot on the y-axis
 #' @param proba the significance threshold considered to characterized the category (by default 0.05)
@@ -13,11 +14,13 @@
 #'
 #' @examples
 #' \dontrun{
+#' library(FactoMineR)
 #' data(decathlon)
-#' res.pca <- PCA(decathlon, quanti.sup = 11:12, quali.sup=13)
-#' Yes_PCA(res = res.pca, yes_study_name = "PCA+ HCPC", path = "path/to/the/powerpoint_file.pptx")
+#' res.pca <- FactoMineR::PCA(decathlon, quanti.sup = 11:12, quali.sup=13)
+#' # Create the PowerPoint in the current working directory
+#' Yes_PCA(res.pca)
 #' }
-Yes_PCA <- function(res,yes_study_name = "PCA + HCPC",path,x1=1,x2=2,proba=0.05,size_tab=10){
+Yes_PCA <- function(res,yes_study_name = "PCA + HCPC",path=getwd(), file.name="PCA_results.pptx",x1=1,x2=2,proba=0.05,size_tab=10){
 
   location_body <- officer::ph_location_type(type = "body")
   location_title <- officer::ph_location_type(type = "title")
@@ -567,9 +570,5 @@ Yes_PCA <- function(res,yes_study_name = "PCA + HCPC",path,x1=1,x2=2,proba=0.05,
       }
     }
   }
-  if(!missing(path)) {
-    print(essai,target = path)
-  } else {
-    print("Path argument is missing")
-  }
+  print(essai, target = paste(path,file.name, sep="/"))
 }

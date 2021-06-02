@@ -6,8 +6,9 @@
 \usage{
 Yes_decat(
   res,
-  yes_study_name,
-  path,
+  yes_study_name = "Quantitative description of products",
+  path = getwd(),
+  file.name = "decat_results.pptx",
   x1 = 1,
   x2 = 2,
   size_tab = 10,
@@ -21,6 +22,8 @@ Yes_decat(
 \item{yes_study_name}{title displayed on the first slide}
 
 \item{path}{PowerPoint file to be created}
+
+\item{file.name}{name of the PowerPoint file}
 
 \item{x1}{dimension to plot on the x-axis}
 
@@ -39,6 +42,7 @@ PowerPoint reporting of a description of categories
 \dontrun{
 data("sensochoc")
 res.decat <- SensoMineR::decat(sensochoc, formul="~Product+Panelist", firstvar = 5, graph = FALSE)
-Yes_decat(res.decat, yes_study_name="Quantitative description of products", path="path/to/the/powerpoint_file.pptx")
+# Create the PowerPoint in the current working directory
+Yes_decat(res.decat)
 }
 }

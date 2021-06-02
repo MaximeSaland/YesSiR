@@ -2,7 +2,8 @@
 #'
 #' @param res a MCA object
 #' @param yes_study_name title displayed on the first slide
-#' @param path PowerPoint file to be created
+#' @param path path to the directory which will store the PowerPoint file
+#' @param file.name name of the PowerPoint file
 #' @param x1 component to plot on the x-axis
 #' @param x2 component to plot on the y-axis
 #' @param thres_x1 the threshold for the x-axis over which points are ploted translucent
@@ -17,10 +18,11 @@
 #' \dontrun{
 #' data(tea)
 #' res.mca <- FactoMineR::MCA(tea[,-19],quali.sup=19:35,graph=FALSE)
-#' Yes_MCA(res.mca,yes_study_name="MCA + HCPC", path = "path/to/the/powerpoint_file.pptx")
+#' # Create the PowerPoint in the current working directory
+#' Yes_MCA(res.mca)
 #' }
 
-Yes_MCA <- function(res,yes_study_name,path,x1=1,x2=2,thres_x1=2,thres_x2=2,proba=0.05,size_tab=10){
+Yes_MCA <- function(res,yes_study_name="MCA + HCPC",path=getwd(),file.name = "MCA_results.pptx",x1=1,x2=2,thres_x1=2,thres_x2=2,proba=0.05,size_tab=10){
 
   yes_temp = system.file("YesSiR_template.pptx", package = "YesSiR")
   #######################################
@@ -636,9 +638,5 @@ Yes_MCA <- function(res,yes_study_name,path,x1=1,x2=2,thres_x1=2,thres_x2=2,prob
       }
     }
   }
-  if (!missing(path)) {
-    print(essai, target = path)
-  } else {
-    print("Path argument is missing")
-  }
+  print(essai, target = paste(path,file.name, sep="/"))
 }#End function

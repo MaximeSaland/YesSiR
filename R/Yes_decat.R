@@ -3,6 +3,7 @@
 #' @param res decat result
 #' @param yes_study_name title displayed on the first slide
 #' @param path PowerPoint file to be created
+#' @param file.name name of the PowerPoint file
 #' @param x1 dimension to plot on the x-axis
 #' @param x2 dimension to plot on the y-axis
 #' @param size_tab maximum number of rows of a table per slide
@@ -14,10 +15,11 @@
 #' \dontrun{
 #' data("sensochoc")
 #' res.decat <- SensoMineR::decat(sensochoc, formul="~Product+Panelist", firstvar = 5, graph = FALSE)
-#' Yes_decat(res.decat, yes_study_name="Quantitative description of products", path="path/to/the/powerpoint_file.pptx")
+#' # Create the PowerPoint in the current working directory
+#' Yes_decat(res.decat)
 #' }
 
-Yes_decat <- function(res, yes_study_name, path, x1=1, x2=2, size_tab=10, col.neg="red", col.pos="blue"){
+Yes_decat <- function(res, yes_study_name = "Quantitative description of products", path=getwd(), file.name = "decat_results.pptx", x1=1, x2=2, size_tab=10, col.neg="red", col.pos="blue"){
 
   yes_temp = system.file("YesSiR_template.pptx", package = "YesSiR")
   #######################################
@@ -227,10 +229,5 @@ Yes_decat <- function(res, yes_study_name, path, x1=1, x2=2, size_tab=10, col.ne
     unlink("spiderplot.png")
   }
   #######################################
-  if (!missing(path)) {
-    print(essai, target = path)
-  } else {
-    print("Path argument is missing")
-  }
-
+  print(essai, target = paste(path,file.name, sep="/"))
 }

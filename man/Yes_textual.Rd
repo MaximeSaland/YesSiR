@@ -6,8 +6,9 @@
 \usage{
 Yes_textual(
   res,
-  yes_study_name = "Result of a textual analysis",
-  path,
+  yes_study_name = "Textual analysis",
+  path = getwd(),
+  file.name = "textual_results.pptx",
   size_tab = 10,
   proba = 0.05,
   col.neg = "red",
@@ -20,6 +21,8 @@ Yes_textual(
 \item{yes_study_name}{title displayed on the first slide}
 
 \item{path}{PowerPoint file to be created}
+
+\item{file.name}{name of the PowerPoint file}
 
 \item{size_tab}{maximum number of rows of a table per slide}
 
@@ -39,6 +42,7 @@ PowerPoint reporting of a textual analysis
 \dontrun{
 data(beard)
 res.text <- textual(beard,contingence.by = 1,num.text = 3)
-Yes_textual(res = res.text, yes_study_name = "Textual analysis", path = "path/to/the/powerpoint_file.pptx")
+# Create the PowerPoint in the current working directory
+Yes_textual(res.text)
 }
 }

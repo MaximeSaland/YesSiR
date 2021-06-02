@@ -6,8 +6,9 @@
 \usage{
 Yes_MCA(
   res,
-  yes_study_name,
-  path,
+  yes_study_name = "MCA + HCPC",
+  path = getwd(),
+  file.name = "MCA_results.pptx",
   x1 = 1,
   x2 = 2,
   thres_x1 = 2,
@@ -21,7 +22,9 @@ Yes_MCA(
 
 \item{yes_study_name}{title displayed on the first slide}
 
-\item{path}{PowerPoint file to be created}
+\item{path}{path to the directory which will store the PowerPoint file}
+
+\item{file.name}{name of the PowerPoint file}
 
 \item{x1}{component to plot on the x-axis}
 
@@ -45,6 +48,7 @@ PowerPoint reporting of a MCA
 \dontrun{
 data(tea)
 res.mca <- FactoMineR::MCA(tea[,-19],quali.sup=19:35,graph=FALSE)
-Yes_MCA(res.mca,yes_study_name="MCA + HCPC", path = "path/to/the/powerpoint_file.pptx")
+# Create the PowerPoint in the current working directory
+Yes_MCA(res.mca)
 }
 }

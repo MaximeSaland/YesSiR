@@ -7,7 +7,8 @@
 Yes_PCA(
   res,
   yes_study_name = "PCA + HCPC",
-  path,
+  path = getwd(),
+  file.name = "PCA_results.pptx",
   x1 = 1,
   x2 = 2,
   proba = 0.05,
@@ -20,6 +21,8 @@ Yes_PCA(
 \item{yes_study_name}{title displayed on the first slide}
 
 \item{path}{PowerPoint file to be created}
+
+\item{file.name}{name of the PowerPoint file}
 
 \item{x1}{component to plot on the x-axis}
 
@@ -37,8 +40,10 @@ PowerPont reporting of a PCA
 }
 \examples{
 \dontrun{
+library(FactoMineR)
 data(decathlon)
-res.pca <- PCA(decathlon, quanti.sup = 11:12, quali.sup=13)
-Yes_PCA(res = res.pca, yes_study_name = "PCA+ HCPC", path = "path/to/the/powerpoint_file.pptx")
+res.pca <- FactoMineR::PCA(decathlon, quanti.sup = 11:12, quali.sup=13)
+# Create the PowerPoint in the current working directory
+Yes_PCA(res.pca)
 }
 }

@@ -3,6 +3,7 @@
 #' @param res FactoMineR::textual result
 #' @param yes_study_name title displayed on the first slide
 #' @param path PowerPoint file to be created
+#' @param file.name name of the PowerPoint file
 #' @param proba the significance threshold considered to characterized the category (by default 0.05)
 #' @param size_tab maximum number of rows of a table per slide
 #' @param col.neg color for negative values (on the wordclouds)
@@ -14,11 +15,12 @@
 #' @examples
 #' \dontrun{
 #' data(beard)
-#' res.text <- textual(beard,contingence.by = 1,num.text = 3)
-#' Yes_textual(res = res.text, yes_study_name = "Textual analysis", path = "path/to/the/powerpoint_file.pptx")
+#' res.text <- FactoMineR::textual(beard,contingence.by = 1,num.text = 3)
+#' # Create the PowerPoint in the current working directory
+#' Yes_textual(res.text)
 #' }
 
-Yes_textual <- function(res, yes_study_name = "Result of a textual analysis", path, size_tab=10, proba=0.05,col.neg = "red", col.pos = "blue") {
+Yes_textual <- function(res, yes_study_name = "Textual analysis", path=getwd(), file.name = "textual_results.pptx", size_tab=10, proba=0.05,col.neg = "red", col.pos = "blue") {
 
   location_body <- officer::ph_location_type(type = "body")
   location_title <- officer::ph_location_type(type = "title")
@@ -67,8 +69,8 @@ Yes_textual <- function(res, yes_study_name = "Result of a textual analysis", pa
     ft <- flextable::flextable(ft)
     ft <- flextable::bg(ft,j=seq(1,ncol(ft$body$dataset),2),bg="#c7ecee")
     ft <- flextable::bg(ft,j=seq(2,ncol(ft$body$dataset),2),bg="#dff9fb")
-    ft <- flextable::compose(ft,j=seq(1,ncol(ft$body$dataset),2),value = as_paragraph("stimuli"), part = "header")
-    ft <- flextable::compose(ft,j=seq(2,ncol(ft$body$dataset),2),value = as_paragraph("freq"), part = "header")
+    ft <- flextable::compose(ft,j=seq(1,ncol(ft$body$dataset),2),value = flextable::as_paragraph("stimuli"), part = "header")
+    ft <- flextable::compose(ft,j=seq(2,ncol(ft$body$dataset),2),value = flextable::as_paragraph("freq"), part = "header")
     ft <- flextable::align(ft,align = "center",part ="header")
     ft <- flextable::align(ft,align = "center")
     ft <- flextable::autofit(ft)
@@ -92,8 +94,8 @@ Yes_textual <- function(res, yes_study_name = "Result of a textual analysis", pa
       ft <- flextable::flextable(ft)
       ft <- flextable::bg(ft,j=seq(1,ncol(ft$body$dataset),2),bg="#c7ecee")
       ft <- flextable::bg(ft,j=seq(2,ncol(ft$body$dataset),2),bg="#dff9fb")
-      ft <- flextable::compose(ft,j=seq(1,ncol(ft$body$dataset),2),value = as_paragraph("stimuli"), part = "header")
-      ft <- flextable::compose(ft,j=seq(2,ncol(ft$body$dataset),2),value = as_paragraph("freq"), part = "header")
+      ft <- flextable::compose(ft,j=seq(1,ncol(ft$body$dataset),2),value = flextable::as_paragraph("stimuli"), part = "header")
+      ft <- flextable::compose(ft,j=seq(2,ncol(ft$body$dataset),2),value = flextable::as_paragraph("freq"), part = "header")
       ft <- flextable::align(ft,align = "center",part ="header")
       ft <- flextable::align(ft,align = "center")
       ft <- flextable::autofit(ft)
@@ -126,8 +128,8 @@ Yes_textual <- function(res, yes_study_name = "Result of a textual analysis", pa
       ft <- flextable::flextable(ft)
       ft <- flextable::bg(ft,j=seq(1,ncol(ft$body$dataset),2),bg="#c7ecee")
       ft <- flextable::bg(ft,j=seq(2,ncol(ft$body$dataset),2),bg="#dff9fb")
-      ft <- flextable::compose(ft,j=seq(1,ncol(ft$body$dataset),2),value = as_paragraph("stimuli"), part = "header")
-      ft <- flextable::compose(ft,j=seq(2,ncol(ft$body$dataset),2),value = as_paragraph("freq"), part = "header")
+      ft <- flextable::compose(ft,j=seq(1,ncol(ft$body$dataset),2),value = flextable::as_paragraph("stimuli"), part = "header")
+      ft <- flextable::compose(ft,j=seq(2,ncol(ft$body$dataset),2),value = flextable::as_paragraph("freq"), part = "header")
       ft <- flextable::align(ft,align = "center",part ="header")
       ft <- flextable::align(ft,align = "center")
       ft <- flextable::autofit(ft)
@@ -205,9 +207,5 @@ Yes_textual <- function(res, yes_study_name = "Result of a textual analysis", pa
       }
     }
   }
-  if (!missing(path)) {
-    print(essai,target=path)
-  } else {
-    print("Path argument is missing")
-  }
+  print(essai, target = paste(path,file.name, sep="/"))
 }
