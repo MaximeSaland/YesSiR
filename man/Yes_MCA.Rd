@@ -7,7 +7,6 @@
 Yes_MCA(
   res,
   yes_study_name,
-  yes_temp,
   path,
   x1 = 1,
   x2 = 2,
@@ -21,8 +20,6 @@ Yes_MCA(
 \item{res}{a MCA object}
 
 \item{yes_study_name}{title displayed on the first slide}
-
-\item{yes_temp}{path to the template}
 
 \item{path}{PowerPoint file to be created}
 
@@ -48,6 +45,6 @@ PowerPoint reporting of a MCA
 \dontrun{
 data(tea)
 res.mca <- FactoMineR::MCA(tea[,-19],quali.sup=19:35,graph=FALSE)
-Yes_MCA(res.mca,yes_study_name="MCA + HCPC",yes_temp="path/to/the/template/YesSiR_template.pptx", path = "path/to/the/powerpoint_file.pptx")
+Yes_MCA(res.mca,yes_study_name="MCA + HCPC", path = "path/to/the/powerpoint_file.pptx")
 }
 }

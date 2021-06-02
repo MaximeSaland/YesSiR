@@ -7,7 +7,6 @@
 Yes_textual(
   res,
   yes_study_name = "Result of a textual analysis",
-  yes_temp,
   path,
   size_tab = 10,
   proba = 0.05,
@@ -19,8 +18,6 @@ Yes_textual(
 \item{res}{FactoMineR::textual result}
 
 \item{yes_study_name}{title displayed on the first slide}
-
-\item{yes_temp}{path to the template}
 
 \item{path}{PowerPoint file to be created}
 
@@ -42,6 +39,6 @@ PowerPoint reporting of a textual analysis
 \dontrun{
 data(beard)
 res.text <- textual(beard,contingence.by = 1,num.text = 3)
-Yes_textual(res = res.text, yes_study_name = "Textual analysis", yes_temp = "path/to/the/template/YesSiR_template.pptx", path = "path/to/the/powerpoint_file.pptx")
+Yes_textual(res = res.text, yes_study_name = "Textual analysis", path = "path/to/the/powerpoint_file.pptx")
 }
 }

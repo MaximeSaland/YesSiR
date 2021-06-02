@@ -2,7 +2,6 @@
 #'
 #' @param res a MCA object
 #' @param yes_study_name title displayed on the first slide
-#' @param yes_temp path to the template
 #' @param path PowerPoint file to be created
 #' @param x1 component to plot on the x-axis
 #' @param x2 component to plot on the y-axis
@@ -18,11 +17,12 @@
 #' \dontrun{
 #' data(tea)
 #' res.mca <- FactoMineR::MCA(tea[,-19],quali.sup=19:35,graph=FALSE)
-#' Yes_MCA(res.mca,yes_study_name="MCA + HCPC",yes_temp="path/to/the/template/YesSiR_template.pptx", path = "path/to/the/powerpoint_file.pptx")
+#' Yes_MCA(res.mca,yes_study_name="MCA + HCPC", path = "path/to/the/powerpoint_file.pptx")
 #' }
 
-Yes_MCA <- function(res,yes_study_name,yes_temp,path,x1=1,x2=2,thres_x1=2,thres_x2=2,proba=0.05,size_tab=10){
+Yes_MCA <- function(res,yes_study_name,path,x1=1,x2=2,thres_x1=2,thres_x2=2,proba=0.05,size_tab=10){
 
+  yes_temp = system.file("YesSiR_template.pptx", package = "YesSiR")
   #######################################
   #Init: first slide
   yes_slide_num=0

@@ -2,7 +2,6 @@
 #'
 #' @param res FactoMineR::textual result
 #' @param yes_study_name title displayed on the first slide
-#' @param yes_temp path to the template
 #' @param path PowerPoint file to be created
 #' @param proba the significance threshold considered to characterized the category (by default 0.05)
 #' @param size_tab maximum number of rows of a table per slide
@@ -16,15 +15,16 @@
 #' \dontrun{
 #' data(beard)
 #' res.text <- textual(beard,contingence.by = 1,num.text = 3)
-#' Yes_textual(res = res.text, yes_study_name = "Textual analysis", yes_temp = "path/to/the/template/YesSiR_template.pptx", path = "path/to/the/powerpoint_file.pptx")
+#' Yes_textual(res = res.text, yes_study_name = "Textual analysis", path = "path/to/the/powerpoint_file.pptx")
 #' }
 
-Yes_textual <- function(res, yes_study_name = "Result of a textual analysis", yes_temp, path, size_tab=10, proba=0.05,col.neg = "red", col.pos = "blue") {
+Yes_textual <- function(res, yes_study_name = "Result of a textual analysis", path, size_tab=10, proba=0.05,col.neg = "red", col.pos = "blue") {
 
   location_body <- officer::ph_location_type(type = "body")
   location_title <- officer::ph_location_type(type = "title")
   location_sldNum <- officer::ph_location_type(type = "sldNum")
 
+  yes_temp = system.file("YesSiR_template.pptx", package = "YesSiR")
   #######################################
   ### Init: first slide ----
   yes_slide_num=0

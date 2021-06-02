@@ -1,0 +1,67 @@
+---
+title: "Making PowerPoint reporting with YesSiR"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{powerpoint-reporting}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+<style>
+body {
+text-align: justify}
+</style>
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(YesSiR)
+library(FactoMineR)
+library(SensoMineR)
+```
+
+`YesSiR` is a package designed to make reporting for some of the most used functions in `FactoMineR` and `SensoMineR` by producing PowerPoint presentation.
+
+## The functions inputs
+
+All the functions of the YesSiR package used for reporting (`Yes_MCA`, `Yes_PCA`, `Yes_decat`, `Yes_texual`) share inputs. These inputs are:
+
+* res
+* yes_study_name
+* yes_temp
+* path
+* size_tab
+* proba
+
+Let's describes each of them from top to bottom.
+<br><br />
+
+First, the **res** parameter take as input the object resulting from the analysis you wish to produce a reporting from. For `Yes_MCA` (resp. `Yes_PCA`), **res** will take as input a MCA (resp. PCA) object  obtained after using the `MCA` (`PCA`) function from `FactoMineR`. For `Yes_decat`, the **res** argument will take the result of a `decat` function from `SensoMineR`. Finally, `Yes_textual` will take as input the result of a `textual` function from `FactoMineR`.  
+The **yes_study_name** take as input a string containing the title of the first slide of the PowerPoint presentation.  
+The **path** argument is used to indicate the path to the template file (YesSiR_template.pptx). This parameter is very important and none of the functions  doing reporting will work if this argument is misinformed.   
+**Size_tab** is used to set the maximum number of rows a table may have per slide.
+Lastly, the **proba** parameter is used to set the significance threshold.
+
+## Reporting of a Principal Component Analysis
+
+Since the PCA and MCA function are very similar, what is shown in this example can be applied to the Yes_MCA function.
+First things first, let's compute a PCA:
+
+```{r echo=-1}
+options(width = 100)
+data(decathlon)
+head(decathlon)
+res.pca <- PCA(decathlon, quanti.sup = 11:12, quali.sup=13, graph = FALSE)
+lapply(res.pca, names)
+```
+
+As you can see in the example above, the PCA produces lots of data frames. While it is a good thing to have that many results, analysing the PCA can quickly become tedious. That is precisely why YesSiR has been developped. From this PCA result, Yes_PCA will produce an elegant PowerPoint presentation. In addition to the base results of the PCA, Yes_PCA will compute a hierarchical clustering on the individuals factor map and add slides to describe this classification.
+
+```{r}
+
+```

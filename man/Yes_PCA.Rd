@@ -7,7 +7,6 @@
 Yes_PCA(
   res,
   yes_study_name = "PCA + HCPC",
-  yes_temp,
   path,
   x1 = 1,
   x2 = 2,
@@ -19,8 +18,6 @@ Yes_PCA(
 \item{res}{a PCA object}
 
 \item{yes_study_name}{title displayed on the first slide}
-
-\item{yes_temp}{path to the template}
 
 \item{path}{PowerPoint file to be created}
 
@@ -42,6 +39,6 @@ PowerPont reporting of a PCA
 \dontrun{
 data(decathlon)
 res.pca <- PCA(decathlon, quanti.sup = 11:12, quali.sup=13)
-Yes_PCA(res = res.pca, yes_study_name = "PCA+ HCPC", yes_temp = "path/to/the/template/YesSiR_template.pptx", path = "path/to/the/powerpoint_file.pptx")
+Yes_PCA(res = res.pca, yes_study_name = "PCA+ HCPC", path = "path/to/the/powerpoint_file.pptx")
 }
 }

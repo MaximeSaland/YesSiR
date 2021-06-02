@@ -33,3 +33,5 @@ usethis::use_r("Yes_textual")
 usethis::use_r("Yes_PCA")
 
 attachment::att_from_rscripts()
+
+usethis::use_vignette("powerpoint-reporting")

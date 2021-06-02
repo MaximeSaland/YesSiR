@@ -2,7 +2,6 @@
 #'
 #' @param res a PCA object
 #' @param yes_study_name title displayed on the first slide
-#' @param yes_temp path to the template
 #' @param path PowerPoint file to be created
 #' @param x1 component to plot on the x-axis
 #' @param x2 component to plot on the y-axis
@@ -16,14 +15,15 @@
 #' \dontrun{
 #' data(decathlon)
 #' res.pca <- PCA(decathlon, quanti.sup = 11:12, quali.sup=13)
-#' Yes_PCA(res = res.pca, yes_study_name = "PCA+ HCPC", yes_temp = "path/to/the/template/YesSiR_template.pptx", path = "path/to/the/powerpoint_file.pptx")
+#' Yes_PCA(res = res.pca, yes_study_name = "PCA+ HCPC", path = "path/to/the/powerpoint_file.pptx")
 #' }
-Yes_PCA <- function(res,yes_study_name = "PCA + HCPC",yes_temp,path,x1=1,x2=2,proba=0.05,size_tab=10){
+Yes_PCA <- function(res,yes_study_name = "PCA + HCPC",path,x1=1,x2=2,proba=0.05,size_tab=10){
 
   location_body <- officer::ph_location_type(type = "body")
   location_title <- officer::ph_location_type(type = "title")
   location_sldNum <- officer::ph_location_type(type = "sldNum")
 
+  yes_temp = system.file("YesSiR_template.pptx", package = "YesSiR")
   #######################################
   #Init: first slide
   yes_slide_num=0

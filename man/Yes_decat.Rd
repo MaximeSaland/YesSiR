@@ -7,7 +7,6 @@
 Yes_decat(
   res,
   yes_study_name,
-  yes_temp,
   path,
   x1 = 1,
   x2 = 2,
@@ -20,8 +19,6 @@ Yes_decat(
 \item{res}{decat result}
 
 \item{yes_study_name}{title displayed on the first slide}
-
-\item{yes_temp}{path to the template}
 
 \item{path}{PowerPoint file to be created}
 
@@ -42,6 +39,6 @@ PowerPoint reporting of a description of categories
 \dontrun{
 data("sensochoc")
 res.decat <- SensoMineR::decat(sensochoc, formul="~Product+Panelist", firstvar = 5, graph = FALSE)
-Yes_decat(res.decat, yes_study_name="Quantitative description of products",yes_temp="path/to/the/template/YesSiR_template.pptx", path="path/to/the/powerpoint_file.pptx")
+Yes_decat(res.decat, yes_study_name="Quantitative description of products", path="path/to/the/powerpoint_file.pptx")
 }
 }
